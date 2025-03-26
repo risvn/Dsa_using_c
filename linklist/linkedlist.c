@@ -27,7 +27,25 @@ while(temp!=NULL){
 printf("\n");
 }
 
+void Delete(int n){
+    struct node* temp=head;
+    if(n==1){head=temp->link;    //edgecase
+    return;};//  
+    for(int i=0;i<n-2&&temp!=NULL;i++) {temp=temp->link;};      //n-2 because head=1 and traversing n-1 length
+      struct node*  del_temp=temp->link;
+        temp->link=del_temp->link;
+        free(del_temp);}
 
+void Insert(int data,int index){
+struct node* temp=head;
+struct node* insert_node=(node*)(malloc(sizeof(node)));
+    insert_node->data=data;
+    if(index==1){insert_node->link=head;
+    head=insert_node;
+    return; };
+for(int i=0;i<index-2&&temp!=NULL ;i++){temp=temp->link;};          //traversing the list
+    insert_node->link=temp->link;
+    temp->link=insert_node;}
 
 
 int main(){
@@ -41,6 +59,9 @@ for(i=0;i<len;i++){
     Print();
   }
 
+    printf("deleting  the number\n");
+    Delete(3);
+    Print();
 
 }
 
